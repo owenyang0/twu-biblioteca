@@ -1,0 +1,16 @@
+apply plugin: 'idea'
+apply plugin: 'java'
+apply plugin: 'jetty'
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+	compile('com.google.guava:guava:11.0.2')
+    testCompile('junit:junit:4.11')
+}
+
+compileJava {
+  options.encoding = "UTF-8"
+}
