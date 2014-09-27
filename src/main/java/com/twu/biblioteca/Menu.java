@@ -6,5 +6,8 @@ package com.twu.biblioteca;
 public class Menu {
     public static void show() {
         System.out.println("1. List Books");
+        System.out.println("2. Checkout Book");
+
+        System.out.println("Select Option: ");
     }
 }

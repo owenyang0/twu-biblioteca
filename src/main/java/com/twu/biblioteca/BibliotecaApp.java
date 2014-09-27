@@ -15,6 +15,9 @@ public class BibliotecaApp {
         while (!input.equals("q")) {
             if (input.equals("1")) {
                 new BookService().list();
+            } else if (input.equals("2")) {
+                input = new BufferedReader(new InputStreamReader(System.in)).readLine();
+                System.out.println(new BookService().checkout(Integer.parseInt(input)));
             } else {
                 System.out.println("Select a valid option!");
             }

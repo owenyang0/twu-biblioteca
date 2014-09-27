@@ -19,4 +19,16 @@ public class BookService {
             System.out.format(fmt, book.getName(), book. getAuthor(), book.getYear());
         }
     }
+
+    public String checkout(int index) {
+        list();
+
+        Book book = new BookDao().getBook(index);
+
+        if (book != null) {
+            return "Thank you! Enjoy the book";
+        }
+
+        return "That book is not available.";
+    }
 }
