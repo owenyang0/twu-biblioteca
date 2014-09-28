@@ -35,6 +35,7 @@ public class Menu {
         for (String index : commandMap.keySet()) {
             printStream.println(index + ". " + commandMap.get(index).description());
         }
+        printStream.println("Q. Quit");
     }
 
     public void select() throws IOException {

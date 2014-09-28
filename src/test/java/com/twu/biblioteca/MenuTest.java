@@ -31,6 +31,14 @@ public class MenuTest {
     }
 
     @Test
+    public void should_display_common_message_when_print_options() throws Exception {
+        menu.printOptions();
+
+        verify(printStream).println("Please select your option:");
+        verify(printStream).println("Q. Quit");
+    }
+
+    @Test
     public void should_print_options_what_you_put_in() {
         String index = "1";
         String description = "A description of one command";
