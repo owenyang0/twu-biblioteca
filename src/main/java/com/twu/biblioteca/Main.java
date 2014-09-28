@@ -22,7 +22,7 @@ public class Main {
         BookService bookService = new BookService();
 
         Map<String, Command> commandMap = new HashMap();
-        commandMap.put("1", new ListBooksCommand(bookService));
+        commandMap.put("1", new ListBooksCommand(printStream, bookService));
         commandMap.put("2", new CheckoutBookCommand(printStream, reader, bookService));
 
         Menu menu = new Menu(printStream, reader, commandMap);
