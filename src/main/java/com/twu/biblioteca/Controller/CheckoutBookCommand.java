@@ -1,6 +1,7 @@
 package com.twu.biblioteca.Controller;
 
 import com.twu.biblioteca.BookService;
+import com.twu.biblioteca.Modal.Book;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -23,6 +24,19 @@ public class CheckoutBookCommand implements Command {
     @Override
     public void execute() throws IOException {
         printStream.println("Which book would you like to checkout?");
+
+        String input = bufferedReader.readLine();
+
+        int index = input == null ? 0 : Integer.parseInt(input);
+        Book book = bookService.checkout(index);
+
+
+        if (book != null) {
+            printStream.println("Thank you! Enjoy the book");
+        } else {
+            printStream.println("That book is not available.");
+        }
+
     }
 
     @Override

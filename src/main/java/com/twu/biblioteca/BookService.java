@@ -20,15 +20,16 @@ public class BookService {
         }
     }
 
-    public String checkout(int index) {
+    public Book checkout(int index) {
         list();
 
         Book book = new BookDao().getBook(index);
+        return book;
 
-        if (book != null) {
-            return "Thank you! Enjoy the book";
-        }
-
-        return "That book is not available.";
+//        if (book != null) {
+//            return "Thank you! Enjoy the book";
+//        }
+//
+//        return "That book is not available.";
     }
 }
