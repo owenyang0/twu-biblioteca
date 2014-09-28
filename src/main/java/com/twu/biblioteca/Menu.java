@@ -3,6 +3,7 @@ package com.twu.biblioteca;
 import com.twu.biblioteca.Controller.Command;
 
 import java.io.BufferedReader;
+import java.io.IOException;
 import java.io.PrintStream;
 import java.util.Map;
 
@@ -13,6 +14,7 @@ public class Menu {
     private final PrintStream printStream;
     private final BufferedReader bufferedReader;
     private final Map<String, Command> commandMap;
+    private boolean cango = true;
 
     public Menu(PrintStream printStream, BufferedReader bufferedReader, Map<String, Command> commandMap) {
         this.printStream = printStream;
@@ -35,11 +37,23 @@ public class Menu {
         }
     }
 
-    public void select() {
+    public void select() throws IOException {
+        String input = bufferedReader.readLine();
+
+        if (input.equalsIgnoreCase("q")) {
+            cango = false;
+            return;
+        }
+
+        if (commandMap.containsKey(input)) {
+            commandMap.get(input).execute();
+        } else {
+            printStream.println("Select a valid option!");
+        }
 
     }
 
     public boolean go() {
-        return true;
+        return cango;
     }
 }

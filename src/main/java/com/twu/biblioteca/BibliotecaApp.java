@@ -34,7 +34,7 @@ public class BibliotecaApp {
         }
     }
 
-    public void start() {
+    public void start() throws IOException {
         printStream.println("Welcome!");
 
         do {

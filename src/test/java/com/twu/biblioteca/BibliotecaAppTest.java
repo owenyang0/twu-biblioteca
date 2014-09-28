@@ -3,6 +3,7 @@ package com.twu.biblioteca;
 import org.junit.Before;
 import org.junit.Test;
 
+import java.io.IOException;
 import java.io.PrintStream;
 
 import static org.mockito.Mockito.*;
@@ -35,7 +36,7 @@ public class BibliotecaAppTest {
     }
 
     @Test
-    public void should_let_users_choose_after_start() {
+    public void should_let_users_choose_after_start() throws IOException {
         biblioteca.start();
         verify(menu).select();
     }

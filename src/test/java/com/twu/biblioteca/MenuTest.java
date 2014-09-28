@@ -9,6 +9,8 @@ import java.io.PrintStream;
 import java.util.HashMap;
 import java.util.Map;
 
+import static junit.framework.Assert.assertTrue;
+import static junit.framework.TestCase.assertFalse;
 import static org.mockito.Mockito.*;
 
 public class MenuTest {
@@ -39,33 +41,34 @@ public class MenuTest {
         verify(printStream).println("1. A description of one command");
     }
 
-//    @Test
-//    public void shouldCallCommandWhenOptionIsSelected() throws IOException {
-//        String input = "1";
-//        commandMap.put(input, command);
-//        when(bufferedReader.readLine()).thenReturn(input);
-//        menu.selectOption();
-//        verify(command).execute();
-//    }
-//
-//    @Test
-//    public void shouldRePromptWhenGivenInvalidOption() throws IOException {
-//        when(bufferedReader.readLine()).thenReturn("Bad Input");
-//        menu.selectOption();
-//        verify(printStream).println("Select a valid option!");
-//    }
-//
-//    @Test
-//    public void shouldBeDoneAfterReceivingQuit() throws IOException {
-//        when(bufferedReader.readLine()).thenReturn("Quit");
-//        menu.selectOption();
-//        assertFalse(menu.shouldContinue());
-//    }
-//
-//    @Test
-//    public void ShouldNotBeDoneIfQuitNotReceived() throws IOException {
-//        when(bufferedReader.readLine()).thenReturn("1");
-//        menu.selectOption();
-//        assertTrue(menu.shouldContinue());
-//    }
+    @Test
+    public void should_execute_command_when_select() throws Exception {
+        String index = "1";
+        commandMap.put(index, command);
+
+        when(bufferedReader.readLine()).thenReturn(index);
+        menu.select();
+        verify(command).execute();
+    }
+
+    @Test
+    public void should_prompt_invalid_message_when_given_invalid_input() throws Exception {
+        when(bufferedReader.readLine()).thenReturn("Invalid input");
+        menu.select();
+        verify(printStream).println("Select a valid option!");
+    }
+
+    @Test
+    public void should_not_continue_when_received_q() throws Exception {
+        when(bufferedReader.readLine()).thenReturn("Q");
+        menu.select();
+        assertFalse(menu.go());
+    }
+
+    @Test
+    public void should_continue_when_not_received_q() throws Exception {
+        when(bufferedReader.readLine()).thenReturn("1");
+        menu.select();
+        assertTrue(menu.go());
+    }
 }
