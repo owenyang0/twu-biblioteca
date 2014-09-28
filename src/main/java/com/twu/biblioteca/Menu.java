@@ -22,20 +22,15 @@ public class Menu {
         this.commandMap = commandMap;
     }
 
-    public static void show() {
-        System.out.println("1. List Books");
-        System.out.println("2. Checkout Book");
-
-        System.out.println("Select Option: ");
-    }
-
     public void printOptions() {
+        printStream.println();
         printStream.println("Please select your option:");
 
         for (String index : commandMap.keySet()) {
             printStream.println(index + ". " + commandMap.get(index).description());
         }
         printStream.println("Q. Quit");
+        printStream.println();
     }
 
     public void select() throws IOException {

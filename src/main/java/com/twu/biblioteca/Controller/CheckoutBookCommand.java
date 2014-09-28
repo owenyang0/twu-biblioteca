@@ -36,7 +36,6 @@ public class CheckoutBookCommand implements Command {
         } else {
             printStream.println("That book is not available.");
         }
-
     }
 
     @Override

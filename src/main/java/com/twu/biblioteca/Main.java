@@ -1,5 +1,6 @@
 package com.twu.biblioteca;
 
+import com.twu.biblioteca.Controller.CheckoutBookCommand;
 import com.twu.biblioteca.Controller.Command;
 import com.twu.biblioteca.Controller.ListBooksCommand;
 
@@ -22,6 +23,7 @@ public class Main {
 
         Map<String, Command> commandMap = new HashMap();
         commandMap.put("1", new ListBooksCommand(bookService));
+        commandMap.put("2", new CheckoutBookCommand(printStream, reader, bookService));
 
         Menu menu = new Menu(printStream, reader, commandMap);
         BibliotecaApp app = new BibliotecaApp(printStream, menu);

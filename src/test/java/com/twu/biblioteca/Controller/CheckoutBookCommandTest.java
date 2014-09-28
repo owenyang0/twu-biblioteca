@@ -49,7 +49,6 @@ public class CheckoutBookCommandTest {
 
         command.execute();
         verify(printStream).println("Thank you! Enjoy the book");
-
     }
 
     @Test

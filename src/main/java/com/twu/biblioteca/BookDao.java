@@ -24,6 +24,10 @@ public class BookDao {
     }
 
     public Book getBook(int bookIndex) {
-        return books.get(bookIndex -1);
+        try {
+            return books.get(bookIndex - 1);
+        } catch (IndexOutOfBoundsException e) {
+            return null;
+        }
     }
 }

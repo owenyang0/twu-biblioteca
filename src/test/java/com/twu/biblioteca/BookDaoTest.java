@@ -1,19 +1,26 @@
 package com.twu.biblioteca;
 
 import com.twu.biblioteca.Modal.Book;
+import org.junit.Before;
 import org.junit.Test;
 
 import java.util.List;
 
 import static org.hamcrest.CoreMatchers.is;
+import static org.junit.Assert.assertNull;
 import static org.junit.Assert.assertThat;
 
 public class BookDaoTest {
+    private BookDao bookDao;
+
+    @Before
+    public void setUp() throws Exception {
+        bookDao = new BookDao();
+
+    }
+
     @Test
     public void should_get_all_the_books() {
-        //given
-        BookDao bookDao = new BookDao();
-
         //when
         List<Book> allBooks = bookDao.getAllBooks();
 
@@ -25,10 +32,7 @@ public class BookDaoTest {
     }
 
     @Test
-    public void should_return_a_book_when_given_index() {
-        //given
-        BookDao bookDao = new BookDao();
-
+    public void should_return_a_book_when_given_valid_index() {
         //when
         int bookIndex = 1;
         Book book = bookDao.getBook(bookIndex);
@@ -37,5 +41,12 @@ public class BookDaoTest {
         assertThat(book.getName(), is("ASync JavaScript"));
         assertThat(book.getAuthor(), is("Trevor"));
         assertThat(book.getYear(), is("2013"));
+    }
+
+    @Test
+    public void should_return_null_when_given_invalid_index() throws Exception {
+        int invalidIndex = 4;
+
+        assertNull(bookDao.getBook(invalidIndex));
     }
 }

@@ -10,26 +10,17 @@ import java.util.List;
 public class BookService {
     public void list() {
         List<Book> books = new BookDao().getAllBooks();
-        String fmt = "%1$50s %2$10s %3$10s%n";
+        String fmt = "%1$-40s %2$-10s %3$10s%n";
 
         System.out.format(fmt, "Book Name", "Author", "Published Year");
-        System.out.format(fmt, "-----", "-----", "-----");
+        System.out.format(fmt, "---------", "------", "--------------");
 
         for (Book book : books) {
-            System.out.format(fmt, book.getName(), book. getAuthor(), book.getYear());
+            System.out.format(fmt, book.getName(), book.getAuthor(), book.getYear());
         }
     }
 
     public Book checkout(int index) {
-        list();
-
-        Book book = new BookDao().getBook(index);
-        return book;
-
-//        if (book != null) {
-//            return "Thank you! Enjoy the book";
-//        }
-//
-//        return "That book is not available.";
+        return new BookDao().getBook(index);
     }
 }
