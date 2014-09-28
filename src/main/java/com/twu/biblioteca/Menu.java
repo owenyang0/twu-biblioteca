@@ -34,4 +34,12 @@ public class Menu {
             printStream.println(index + ". " + commandMap.get(index).description());
         }
     }
+
+    public void select() {
+
+    }
+
+    public boolean go() {
+        return true;
+    }
 }
