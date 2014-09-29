@@ -9,12 +9,21 @@ import java.util.List;
  * Created by songyang on 9/19/14.
  */
 public class BookService {
-    public void list(PrintStream printStream) {
-        List<Book> books = new BookDao().getAllBooks();
-        String fmt = "%1$-40s %2$-10s %3$10s%n";
+    private String fmt = "%1$-40s %2$-10s %3$10s%n";
+    private BookDao bookDao;
 
+    public BookService(BookDao bookDao) {
+        this.bookDao = bookDao;
+    }
+
+    private void printHeader(PrintStream printStream) {
         printStream.format(fmt, "Book Name", "Author", "Published Year");
         printStream.format(fmt, "---------", "------", "--------------");
+    }
+
+    public void list(PrintStream printStream) {
+        List<Book> books = bookDao.getAllBooks();
+        printHeader(printStream);
 
         for (Book book : books) {
             printStream.format(fmt, book.getName(), book.getAuthor(), book.getYear());
@@ -22,6 +31,16 @@ public class BookService {
     }
 
     public Book checkout(int index) {
-        return new BookDao().getBook(index);
+        return bookDao.getBook(index);
+    }
+
+    public void listChecked(PrintStream printStream) {
+        printHeader(printStream);
+
+        List<Book> checkedBooks = bookDao.getCheckedBooks();
+
+        for (Book book : checkedBooks) {
+            printStream.format(fmt, book.getName(), book.getAuthor(), book.getYear());
+        }
     }
 }

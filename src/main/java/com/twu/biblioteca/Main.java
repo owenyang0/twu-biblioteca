@@ -19,7 +19,8 @@ public class Main {
     public static void main(String[] args) throws IOException {
         PrintStream printStream = System.out;
         BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
-        BookService bookService = new BookService();
+        BookDao bookDao = new BookDao();
+        BookService bookService = new BookService(bookDao);
 
         Map<String, Command> commandMap = new HashMap();
         commandMap.put("1", new ListBooksCommand(printStream, bookService));
