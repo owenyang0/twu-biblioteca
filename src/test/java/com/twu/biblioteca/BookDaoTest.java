@@ -9,6 +9,7 @@ import java.util.List;
 import static org.hamcrest.CoreMatchers.is;
 import static org.junit.Assert.assertNull;
 import static org.junit.Assert.assertThat;
+import static org.mockito.Mockito.when;
 
 public class BookDaoTest {
     private BookDao bookDao;
@@ -48,5 +49,15 @@ public class BookDaoTest {
         int invalidIndex = 4;
 
         assertNull(bookDao.getBook(invalidIndex));
+    }
+
+
+    @Test
+    public void should_reduce_counts_of_books_when_checkout() throws Exception {
+        int originalCounts = bookDao.books.size();
+        bookDao.getBook(1);
+
+        assertThat(bookDao.books.size(), is(originalCounts - 1));
+
     }
 }

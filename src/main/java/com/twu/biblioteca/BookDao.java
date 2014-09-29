@@ -25,7 +25,7 @@ public class BookDao {
 
     public Book getBook(int bookIndex) {
         try {
-            return books.get(bookIndex - 1);
+            return books.remove(bookIndex - 1);
         } catch (IndexOutOfBoundsException e) {
             return null;
         }
