@@ -7,9 +7,7 @@ import org.junit.Test;
 import java.util.List;
 
 import static org.hamcrest.CoreMatchers.is;
-import static org.junit.Assert.assertNull;
-import static org.junit.Assert.assertThat;
-import static org.junit.Assert.assertTrue;
+import static org.junit.Assert.*;
 import static org.mockito.Mockito.when;
 
 public class BookDaoTest {
@@ -55,10 +53,10 @@ public class BookDaoTest {
 
     @Test
     public void should_reduce_counts_of_books_when_checkout() throws Exception {
-        int originalCounts = bookDao.books.size();
+        int originalCounts = bookDao.getAllBooks().size();
         bookDao.getBook(1);
 
-        assertThat(bookDao.books.size(), is(originalCounts - 1));
+        assertThat(bookDao.getAllBooks().size(), is(originalCounts - 1));
     }
 
     @Test
@@ -66,5 +64,20 @@ public class BookDaoTest {
         Book book = bookDao.getBook(1);
 
         assertThat(book, is(bookDao.getCheckedBooks().get(0)));
+    }
+
+    @Test
+    public void should_return_book_when_given_checked_out_book() throws Exception {
+        int originalCounts = bookDao.getAllBooks().size();
+        Book book = bookDao.getBook(1);
+
+        assertTrue(bookDao.returnBook(book));
+        assertThat(bookDao.getAllBooks().size(), is(originalCounts));
+    }
+
+    @Test
+    public void should_not_allowed_to_return_book_when_given_unchecked_out_book() throws Exception {
+        Book book = new Book("Invalid book", "unknown", "2014");
+        assertFalse(bookDao.returnBook(book));
     }
 }

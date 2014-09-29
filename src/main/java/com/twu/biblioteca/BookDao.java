@@ -10,8 +10,8 @@ import java.util.List;
  */
 public class BookDao {
 
-    List<Book> books = new ArrayList<>();
-    List<Book> checkedBooks = new ArrayList<>();
+    private  List<Book> books = new ArrayList<>();
+    private  List<Book> checkedBooks = new ArrayList<>();
 
     public BookDao() {
         books.add(new Book("ASync JavaScript", "Trevor", "2013"));
@@ -37,5 +37,13 @@ public class BookDao {
 
     public List<Book> getCheckedBooks() {
         return checkedBooks;
+    }
+
+    public boolean returnBook(Book book) {
+        if (checkedBooks.contains(book) && checkedBooks.remove(book)) {
+            return books.add(book);
+        } else {
+            return false;
+        }
     }
 }
