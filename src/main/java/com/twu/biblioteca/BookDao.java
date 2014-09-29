@@ -11,6 +11,7 @@ import java.util.List;
 public class BookDao {
 
     List<Book> books = new ArrayList<>();
+    List<Book> checkedBooks = new ArrayList<>();
 
     public BookDao() {
         books.add(new Book("ASync JavaScript", "Trevor", "2013"));
@@ -25,9 +26,16 @@ public class BookDao {
 
     public Book getBook(int bookIndex) {
         try {
-            return books.remove(bookIndex - 1);
+            Book book = books.remove(bookIndex - 1);
+            checkedBooks.add(book);
+
+            return book;
         } catch (IndexOutOfBoundsException e) {
             return null;
         }
+    }
+
+    public List<Book> getCheckedBooks() {
+        return checkedBooks;
     }
 }

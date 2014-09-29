@@ -9,6 +9,7 @@ import java.util.List;
 import static org.hamcrest.CoreMatchers.is;
 import static org.junit.Assert.assertNull;
 import static org.junit.Assert.assertThat;
+import static org.junit.Assert.assertTrue;
 import static org.mockito.Mockito.when;
 
 public class BookDaoTest {
@@ -58,6 +59,12 @@ public class BookDaoTest {
         bookDao.getBook(1);
 
         assertThat(bookDao.books.size(), is(originalCounts - 1));
+    }
 
+    @Test
+    public void should_get_checked_book_when_check_out_a_book() throws Exception {
+        Book book = bookDao.getBook(1);
+
+        assertThat(book, is(bookDao.getCheckedBooks().get(0)));
     }
 }
