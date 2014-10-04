@@ -34,6 +34,10 @@ public class BookService {
         return bookDao.getBook(index);
     }
 
+    public boolean returnBook(Book book) {
+        return bookDao.returnBook(book);
+    }
+
     public void listChecked(PrintStream printStream) {
         printHeader(printStream);
 
@@ -42,5 +46,10 @@ public class BookService {
         for (Book book : checkedBooks) {
             printStream.format(fmt, book.getName(), book.getAuthor(), book.getYear());
         }
+    }
+
+    public boolean returnBookByIndex(int index) {
+        Book book = bookDao.getCheckedBook(index);
+        return bookDao.returnBook(book);
     }
 }

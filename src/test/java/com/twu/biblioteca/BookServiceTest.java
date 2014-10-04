@@ -1,18 +1,16 @@
 package com.twu.biblioteca;
 
-import com.twu.biblioteca.Controller.CheckoutBookCommand;
 import com.twu.biblioteca.Modal.Book;
 import org.junit.Before;
 import org.junit.Test;
 
-import java.io.BufferedReader;
 import java.io.PrintStream;
 import java.util.ArrayList;
 import java.util.List;
 
-import static org.mockito.Mockito.mock;
-import static org.mockito.Mockito.verify;
-import static org.mockito.Mockito.when;
+import static junit.framework.Assert.assertFalse;
+import static junit.framework.TestCase.assertTrue;
+import static org.mockito.Mockito.*;
 
 public class BookServiceTest {
     private PrintStream printStream;
@@ -36,5 +34,19 @@ public class BookServiceTest {
         bookService.listChecked(printStream);
 
         verify(printStream).format(fmt, "Pragmatic Programmer", "Andrew", "2011");
+    }
+
+    @Test
+    public void should_return_book_by_index_correctly() throws Exception {
+        List<Book> books = new ArrayList<>();
+        books.add(new Book("ASync JavaScript", "Trevor", "2013"));
+
+        when(bookDao.getCheckedBooks()).thenReturn(books);
+        assertTrue(bookService.returnBookByIndex(1));
+    }
+
+    @Test
+    public void should_return_false_when_given_wrongly_index() throws Exception {
+        assertFalse(bookService.returnBookByIndex(1));
     }
 }

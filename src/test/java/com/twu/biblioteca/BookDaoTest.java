@@ -4,6 +4,7 @@ import com.twu.biblioteca.Modal.Book;
 import org.junit.Before;
 import org.junit.Test;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import static org.hamcrest.CoreMatchers.is;
@@ -79,5 +80,20 @@ public class BookDaoTest {
     public void should_not_allowed_to_return_book_when_given_unchecked_out_book() throws Exception {
         Book book = new Book("Invalid book", "unknown", "2014");
         assertFalse(bookDao.returnBook(book));
+    }
+
+    @Test
+    public void should_return_book_when_given_correct_checked_index() throws Exception {
+        Book book = new Book("ASync JavaScript", "Trevor", "2013");
+
+        bookDao.getBook(1);
+        assertThat(bookDao.getCheckedBook(1), is(book));
+    }
+
+    @Test
+    public void should_return_null_when_given_invalid_checked_book_index() throws Exception {
+        int invalidIndex = 4;
+
+        assertNull(bookDao.getCheckedBook(invalidIndex));
     }
 }

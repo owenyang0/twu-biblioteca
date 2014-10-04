@@ -46,4 +46,15 @@ public class BookDao {
             return false;
         }
     }
+
+    public Book getCheckedBook(int index) {
+        try {
+            Book book = checkedBooks.remove(index);
+            books.add(book);
+
+            return book;
+        } catch (IndexOutOfBoundsException e) {
+            return null;
+        }
+    }
 }
