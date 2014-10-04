@@ -49,10 +49,8 @@ public class BookDao {
 
     public Book getCheckedBook(int index) {
         try {
-            Book book = checkedBooks.remove(index);
-            books.add(book);
-
-            return book;
+            Book book = checkedBooks.get(index - 1);
+            return returnBook(book) ? book : null;
         } catch (IndexOutOfBoundsException e) {
             return null;
         }

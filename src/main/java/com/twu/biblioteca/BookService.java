@@ -48,8 +48,7 @@ public class BookService {
         }
     }
 
-    public boolean returnBookByIndex(int index) {
-        Book book = bookDao.getCheckedBook(index);
-        return bookDao.returnBook(book);
+    public Book returnBookByIndex(int index) {
+        return bookDao.getCheckedBook(index);
     }
 }

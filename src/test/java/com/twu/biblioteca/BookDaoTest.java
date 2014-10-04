@@ -87,7 +87,10 @@ public class BookDaoTest {
         Book book = new Book("ASync JavaScript", "Trevor", "2013");
 
         bookDao.getBook(1);
-        assertThat(bookDao.getCheckedBook(1), is(book));
+        Book checkedBook = bookDao.getCheckedBook(1);
+        assertThat(checkedBook.getName(), is("ASync JavaScript"));
+        assertThat(checkedBook.getAuthor(), is("Trevor"));
+        assertThat(checkedBook.getYear(), is("2013"));
     }
 
     @Test

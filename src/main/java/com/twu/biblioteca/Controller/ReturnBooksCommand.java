@@ -1,6 +1,7 @@
 package com.twu.biblioteca.Controller;
 
 import com.twu.biblioteca.BookService;
+import com.twu.biblioteca.Modal.Book;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -29,9 +30,9 @@ public class ReturnBooksCommand implements Command {
 
         String input = bufferedReader.readLine();
         int index = input == null ? 0 : Integer.parseInt(input);
-        boolean succeed = bookService.returnBookByIndex(index);
+        Book book = bookService.returnBookByIndex(index);
 
-        if (succeed) {
+        if (book != null) {
             printStream.println("Thank you for returning the book.");
         } else {
             printStream.println("That is not a valid book to return.");

@@ -1,6 +1,7 @@
 package com.twu.biblioteca.Controller;
 
 import com.twu.biblioteca.BookService;
+import com.twu.biblioteca.Modal.Book;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -44,7 +45,7 @@ public class ReturnBooksCommandTest {
     @Test
     public void should_return_success_when_given_correct_book_index_to_return() throws Exception {
         when(reader.readLine()).thenReturn("1");
-        when(bookService.returnBookByIndex(1)).thenReturn(true);
+        when(bookService.returnBookByIndex(1)).thenReturn(new Book("ASync JavaScript", "Trevor", "2013"));
 
         command.execute();
         verify(printStream).println("Thank you for returning the book.");
