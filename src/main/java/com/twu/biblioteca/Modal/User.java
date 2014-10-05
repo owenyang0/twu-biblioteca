@@ -9,13 +9,14 @@ public class User {
     private String email;
     private String phone;
     private String password;
-    private boolean isLogin;
+    private boolean isLogin = false;
 
-    public User(String libraryNumber, String name, String email, String phone) {
+    public User(String libraryNumber, String name, String email, String phone, String password) {
         this.libraryNumber = libraryNumber;
         this.name = name;
         this.email = email;
         this.phone = phone;
+        this.password = password;
     }
 
     public String getLibraryNumber() {
