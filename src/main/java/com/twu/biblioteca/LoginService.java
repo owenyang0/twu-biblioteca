@@ -19,8 +19,6 @@ public class LoginService {
     }
 
     public boolean auth() throws IOException {
-        printStream.println("Please login first with your library number and password!");
-
         printStream.println("Library NO: ");
         String libraryNO = reader.readLine();
         printStream.println("Password: ");
@@ -29,8 +27,12 @@ public class LoginService {
         if (login.author(libraryNO, passwords)) {
             printStream.println("Login success!");
             return true;
+        } else {
+            printStream.println();
+            printStream.println("Login failed. Please login again!");
+            auth();
+            return false;
         }
-        return false;
     }
 
     public boolean isLogin() {

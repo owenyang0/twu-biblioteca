@@ -47,9 +47,32 @@ public class LoginServiceTest {
         when(login.author(validLibraryNO, validPassword)).thenReturn(true);
         loginService.auth();
 
-        verify(printStream).println("Please login first with your library number and password!");
         verify(printStream).println("Library NO: ");
         verify(printStream).println("Password: ");
         verify(printStream).println("Login success!");
     }
+
+
+    @Test
+    public void should_display_unauth_message_when_doing_auth() throws Exception {
+        String invalidLibraryNO = "111-2222-0";
+        String invalidPassword = "123-4";
+        String validLibraryNO = "111-2222";
+        String validPassword = "123";
+
+        when(reader.readLine()).thenReturn(invalidLibraryNO)
+                .thenReturn(invalidPassword)
+                .thenReturn(validLibraryNO)
+                .thenReturn(validPassword);
+        when(login.author(invalidLibraryNO, invalidPassword)).thenReturn(false);
+        when(login.author(validLibraryNO, validPassword)).thenReturn(true);
+
+        loginService.auth();
+
+        verify(printStream, times(2)).println("Library NO: ");
+        verify(printStream, times(2)).println("Password: ");
+        verify(printStream).println("Login failed. Please login again!");
+        verify(printStream).println("Login success!");
+    }
+
 }
