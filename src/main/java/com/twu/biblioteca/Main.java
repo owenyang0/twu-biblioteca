@@ -23,12 +23,16 @@ public class Main {
         BookDao bookDao = new BookDao();
         BookService bookService = new BookService(bookDao);
 
+        UserDao userDao = new UserDao();
+        Login login = new Login(printStream, userDao);
+        LoginService loginService = new LoginService(printStream, reader, login);
+
         Map<String, Command> commandMap = new HashMap();
         commandMap.put("1", new ListBooksCommand(printStream, bookService));
         commandMap.put("2", new CheckoutBookCommand(printStream, reader, bookService));
         commandMap.put("3", new ReturnBooksCommand(printStream, reader, bookService));
 
-        Menu menu = new Menu(printStream, reader, commandMap);
+        Menu menu = new Menu(printStream, reader, commandMap,loginService);
         BibliotecaApp app = new BibliotecaApp(printStream, menu);
 
         app.start();

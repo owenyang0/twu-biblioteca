@@ -5,6 +5,7 @@ import org.junit.Before;
 import org.junit.Test;
 
 import java.io.BufferedReader;
+import java.io.IOException;
 import java.io.PrintStream;
 import java.util.HashMap;
 import java.util.Map;
@@ -20,6 +21,7 @@ public class MenuTest {
     private Menu menu;
     private Command command;
     private Map<String, Command> commandMap;
+    private LoginService loginService;
 
     @Before
     public void setUp() throws Exception {
@@ -27,7 +29,8 @@ public class MenuTest {
         bufferedReader = mock(BufferedReader.class);
         command = mock(Command.class);
         commandMap = new HashMap<String, Command>();
-        menu = new Menu(printStream, bufferedReader, commandMap);
+        loginService = mock(LoginService.class);
+        menu = new Menu(printStream, bufferedReader, commandMap, loginService);
     }
 
     @Test
@@ -39,7 +42,7 @@ public class MenuTest {
     }
 
     @Test
-    public void should_print_options_what_you_put_in() {
+    public void should_print_options_what_you_put_in() throws IOException {
         String index = "1";
         String description = "A description of one command";
         commandMap.put(index, command);

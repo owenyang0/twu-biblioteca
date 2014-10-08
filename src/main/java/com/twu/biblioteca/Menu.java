@@ -14,23 +14,31 @@ public class Menu {
     private final PrintStream printStream;
     private final BufferedReader bufferedReader;
     private final Map<String, Command> commandMap;
+    private LoginService loginService;
     private boolean cango = true;
 
-    public Menu(PrintStream printStream, BufferedReader bufferedReader, Map<String, Command> commandMap) {
+    public Menu(PrintStream printStream, BufferedReader bufferedReader, Map<String, Command> commandMap, LoginService loginService) {
         this.printStream = printStream;
         this.bufferedReader = bufferedReader;
         this.commandMap = commandMap;
+        this.loginService = loginService;
     }
 
-    public void printOptions() {
-        printStream.println();
-        printStream.println("Please select your option:");
+    private boolean isValid() throws IOException {
+        return loginService.isLogin() || loginService.auth();
+    }
 
-        for (String index : commandMap.keySet()) {
-            printStream.println(index + ". " + commandMap.get(index).description());
+    public void printOptions() throws IOException {
+        if (isValid()) {
+            printStream.println();
+            printStream.println("Please select your option:");
+
+            for (String index : commandMap.keySet()) {
+                printStream.println(index + ". " + commandMap.get(index).description());
+            }
+            printStream.println("Q. Quit");
+            printStream.println();
         }
-        printStream.println("Q. Quit");
-        printStream.println();
     }
 
     public void select() throws IOException {
