@@ -38,6 +38,8 @@ public class Menu {
             }
             printStream.println("Q. Quit");
             printStream.println();
+        } else {
+            printOptions();
         }
     }
 
