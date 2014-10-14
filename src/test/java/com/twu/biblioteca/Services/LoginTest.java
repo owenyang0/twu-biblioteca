@@ -1,11 +1,13 @@
-package com.twu.biblioteca;
+package com.twu.biblioteca.Services;
 
+import com.twu.biblioteca.Dao.UserDao;
 import org.junit.Before;
 import org.junit.Test;
 
 import java.io.PrintStream;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertTrue;
 import static org.mockito.Mockito.mock;
 
 public class LoginTest {

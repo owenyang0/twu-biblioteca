@@ -1,7 +1,7 @@
 package com.twu.biblioteca.Controller;
 
-import com.twu.biblioteca.BookService;
 import com.twu.biblioteca.Modal.Book;
+import com.twu.biblioteca.Services.BookService;
 
 import java.io.BufferedReader;
 import java.io.IOException;

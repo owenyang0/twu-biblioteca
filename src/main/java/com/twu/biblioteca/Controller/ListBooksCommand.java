@@ -1,6 +1,6 @@
 package com.twu.biblioteca.Controller;
 
-import com.twu.biblioteca.BookService;
+import com.twu.biblioteca.Services.BookService;
 
 import java.io.IOException;
 import java.io.PrintStream;

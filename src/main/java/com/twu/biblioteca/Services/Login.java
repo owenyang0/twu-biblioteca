@@ -1,5 +1,6 @@
-package com.twu.biblioteca;
+package com.twu.biblioteca.Services;
 
+import com.twu.biblioteca.Dao.UserDao;
 import com.twu.biblioteca.Modal.User;
 
 import java.io.PrintStream;

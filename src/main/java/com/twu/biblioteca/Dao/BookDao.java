@@ -1,4 +1,4 @@
-package com.twu.biblioteca;
+package com.twu.biblioteca.Dao;
 
 import com.twu.biblioteca.Modal.Book;
 
@@ -10,8 +10,8 @@ import java.util.List;
  */
 public class BookDao {
 
-    private  List<Book> books = new ArrayList<>();
-    private  List<Book> checkedBooks = new ArrayList<>();
+    private List<Book> books = new ArrayList<>();
+    private List<Book> checkedBooks = new ArrayList<>();
 
     public BookDao() {
         books.add(new Book("ASync JavaScript", "Trevor", "2013"));

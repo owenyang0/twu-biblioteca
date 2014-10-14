@@ -1,6 +1,7 @@
 package com.twu.biblioteca;
 
 import com.twu.biblioteca.Controller.Command;
+import com.twu.biblioteca.Services.LoginService;
 
 import java.io.BufferedReader;
 import java.io.IOException;

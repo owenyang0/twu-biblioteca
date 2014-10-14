@@ -1,7 +1,7 @@
 package com.twu.biblioteca.Controller;
 
-import com.twu.biblioteca.BookDao;
-import com.twu.biblioteca.BookService;
+import com.twu.biblioteca.Dao.BookDao;
+import com.twu.biblioteca.Services.BookService;
 import org.junit.Test;
 
 public class ListBooksCommandTest {

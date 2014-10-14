@@ -1,7 +1,7 @@
 package com.twu.biblioteca.Controller;
 
-import com.twu.biblioteca.BookService;
 import com.twu.biblioteca.Modal.Book;
+import com.twu.biblioteca.Services.BookService;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -9,9 +9,7 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.PrintStream;
 
-import static org.mockito.Mockito.mock;
-import static org.mockito.Mockito.verify;
-import static org.mockito.Mockito.when;
+import static org.mockito.Mockito.*;
 
 
 public class CheckoutBookCommandTest {
