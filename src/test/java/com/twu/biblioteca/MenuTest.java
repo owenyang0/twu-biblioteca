@@ -35,6 +35,7 @@ public class MenuTest {
 
     @Test
     public void should_display_common_message_when_print_options() throws Exception {
+        when(menu.isValid()).thenReturn(true);
         menu.printOptions();
 
         verify(printStream).println("Please select your option:");
@@ -48,6 +49,7 @@ public class MenuTest {
         commandMap.put(index, command);
 
         when(command.description()).thenReturn(description);
+        when(menu.isValid()).thenReturn(true);
         menu.printOptions();
         verify(printStream).println("1. A description of one command");
     }

@@ -24,7 +24,7 @@ public class Menu {
         this.loginService = loginService;
     }
 
-    private boolean isValid() throws IOException {
+    protected boolean isValid() throws IOException {
         return loginService.isLogin() || loginService.auth();
     }
 
